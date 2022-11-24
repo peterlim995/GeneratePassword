@@ -1,32 +1,33 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+// Input the condition and generate the password
 function generate(x) {
   var chars = "";
   var password = "";
 
   // if it includes lowercase
-  if (x._lowercase) {
+  if (x.lowercase) {
     chars += "abcdefghijklmnopqrstuvwxyz";
   }
 
   // if it includes uppercase
-  if (x._uppercase) {
+  if (x.uppercase) {
     chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   }
 
   // if it includes number
-  if (x._numeric) {
+  if (x.numeric) {
     chars += "1234567890";
   }
 
   // if it includes special character
-  if (x._special) {
-    chars += "~!@#$%^&*()_][-=?/;:";
+  if (x.special) {
+    chars += "~!@#$%^&*()][-=?/;:";
   }
 
   // generate the selected length of password
-  for (var i = 0; i < x._lengthNum; i++) {
+  for (var i = 0; i < x.lengthNum; i++) {
     var random = Math.floor(Math.random() * chars.length);
     password += chars.substring(random, random + 1);
   }
@@ -35,6 +36,7 @@ function generate(x) {
 
 }
 
+// User choose the condition of password and return the password
 function generatePassword() {
 
   var lengthNum;
@@ -74,11 +76,11 @@ function generatePassword() {
   } while (true)
 
   var password = {
-    _lengthNum: lengthNum,
-    _lowercase: lowercase,
-    _uppercase: uppercase,
-    _numeric: numeric,
-    _special: special
+    lengthNum: lengthNum,
+    lowercase: lowercase,
+    uppercase: uppercase,
+    numeric: numeric,
+    special: special
   }
 
   return generate(password);
@@ -88,8 +90,6 @@ function generatePassword() {
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
-  // var password = "gdsgsdgsdg";
-
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
